@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeeksterMon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .pokemon_card {
+            perspective: 1000px;
+            width: 200px;
+            height: 250px;
+            cursor: pointer;
+        }
+
+        .card_inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .pokemon_card.flipped .card_inner {
+            transform: rotateY(180deg);
+        }
+
+        .card_front, .card_back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: white;
+        }
+
+        .card_back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <h1 class="text-4xl font-bold text-center my-6 text-gray-800">GeeksterMon</h1>
+    
+    <div class="flex justify-center gap-4">
+        <select name="type" id="type" class="p-2 border rounded">
+            <option value="grass">Grass</option>
+            <option value="bug">Bug</option>
+            <option value="fire">Fire</option>
+            <option value="water">Water</option>
+            <option value="normal">Normal</option>
+            <option value="poison">Poison</option>
+        </select>
+        <button id="filter" class="p-2 bg-blue-500 text-white rounded">Filter</button>
+        <button id="reset" class="p-2 bg-gray-500 text-white rounded"><a href="index.html">Refresh</a></button>
+    </div>
+
+    <br>
+    <input type="text" id="search" placeholder="Start Searching Pokemon..." class="block w-2/3 mx-auto p-2 border rounded">
+
+    <div id="pokemon_card_container" class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4"></div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
